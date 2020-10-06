@@ -1,17 +1,20 @@
 import React, {useState} from 'react';
 import './App.css';
 import MediaObject from './components/mediaObject';
+import * as apiData from './api/weatherApi';
 import * as format from './helpers/format';
 
 function App() {
   const [toggle, setToggle] = useState(true)
-
+  const [name, setName] = useState('Pick your city')
+  
   let clear = 'Clear';
   let precipitation = 'precipitation 0%';
   let apitemp = 96;
   let temp = `${apitemp}˚`;
 
   const clickToggle = () => {
+    apiData.weatherApi();
     setToggle(!toggle)
   }
 
@@ -29,7 +32,7 @@ function App() {
                 <button type="submit" style={{ height: 34 }}>search</button>
               </div>
             :
-              <h3>Thatcher, AZ, USA</h3>
+              <h3>{name}</h3>
             }
             <img 
               height={toggle ? 24 : 26}
