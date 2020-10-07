@@ -1,20 +1,32 @@
 import React, {useState} from 'react';
 import './App.css';
 import MediaObject from './components/mediaObject';
-import * as apiData from './api/weatherApi';
+// import * as apiData from './api/weatherApi';
 import * as format from './helpers/format';
 
 function App() {
   const [toggle, setToggle] = useState(true)
-  const [name, setName] = useState('Pick your city')
+  const [name, setName] = useState('Type your location')
   
   let clear = 'Clear';
   let precipitation = 'precipitation 0%';
   let apitemp = 96;
   let temp = `${apitemp}˚`;
-
+  
+  function zipWeatherLookUp(event) {
+    event.preventDefault();
+    fetch("https://api.openweathermap.org/data/2.5/weather?zip=85552,us&appid=3a5bf1eb2a22106bac2d6d95c02695fb", {
+      "method": "GET"
+    })
+      .then(response => response.json())
+      .then(data => {
+        let newData = format.formatToF(data)
+        console.dir(newData)
+        // setName(data.name)
+        clickToggle()
+      })
+  }
   const clickToggle = () => {
-    apiData.weatherApi();
     setToggle(!toggle)
   }
 
@@ -27,10 +39,14 @@ function App() {
         <div className="today">
           <div className="location">
             { toggle ?
-              <div className="zipInputWrapper">
+              <form 
+                onSubmit={zipWeatherLookUp}
+                className="zipInputWrapper">
                 <input placeholder="Zip" className="zipInput"/>
-                <button type="submit" style={{ height: 34 }}>search</button>
-              </div>
+                <button 
+                  type="submit" 
+                  style={{ height: 34 }}>search</button>
+              </form>
             :
               <h3>{name}</h3>
             }
@@ -45,7 +61,8 @@ function App() {
             <img className="forcast-img" src={require('./assets/sunny.svg')} />
             <h5 className="forcast-txt" style={{ margin: 0, paddingLeft: 10 }}>Sunny</h5>
           </div>
-          <h1 style={{ margin: "0.2em" }}>86˚
+          <h1 style={{ margin: "0.2em" }}>
+            {apitemp}˚
             <span style={{ fontSize: 16 }}>F</span>
           </h1>
           <h5 style={{ margin: 0, paddingLeft: 10}}>Percipitation: 0%</h5>
