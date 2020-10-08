@@ -7,11 +7,11 @@ import * as format from './helpers/format';
 function App() {
   const [toggle, setToggle] = useState(true)
   const [name, setName] = useState('Type your location')
+  const [temp, setTemp] = useState('Hot')
   
   let clear = 'Clear';
   let precipitation = 'precipitation 0%';
-  let apitemp = 96;
-  let temp = `${apitemp}˚`;
+  
   
   function zipWeatherLookUp(event) {
     event.preventDefault();
@@ -20,9 +20,10 @@ function App() {
     })
       .then(response => response.json())
       .then(data => {
-        let newData = format.formatToF(data)
-        console.dir(newData)
-        // setName(data.name)
+        let temps = format.formatToF(data)
+        console.dir('temps are ' + temps)
+        setTemp(temps)
+        setName(data.name)
         clickToggle()
       })
   }
@@ -62,8 +63,8 @@ function App() {
             <h5 className="forcast-txt" style={{ margin: 0, paddingLeft: 10 }}>Sunny</h5>
           </div>
           <h1 style={{ margin: "0.2em" }}>
-            {apitemp}˚
-            <span style={{ fontSize: 16 }}>F</span>
+            {temp}
+            {/* <span style={{ fontSize: 16 }}>F</span> */}
           </h1>
           <h5 style={{ margin: 0, paddingLeft: 10}}>Percipitation: 0%</h5>
         </div>
