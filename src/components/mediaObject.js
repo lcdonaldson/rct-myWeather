@@ -8,10 +8,13 @@ const MediaObject = (props) => {
             <div className="info">
                 <p>{day}, {month} {date}</p>
                 <p style={{fontSize: 12}}>{desc}</p>
-                <p style={{ fontSize: 12 }}>{precipitation}</p>
+                <p style={{ fontSize: 12 }}>{precipitation} %</p>
             </div>
             <div className="temp">
-                <h4 style={{marginTop: 15, marginBottom: 0}}>{temp}</h4>
+                <h4 style={{marginTop: 15, marginBottom: 0}}>
+                    {temp}
+                    <span style={{ fontSize: 16 }}> F</span>
+                </h4>
             </div>
         </div>
     )
