@@ -1,12 +1,14 @@
 import React, {useState, Image} from 'react';
 import './App.css';
 import MediaObject from './components/mediaObject';
+import weatherKey from './api/key';
 // import * as apiData from './api/weatherApi';
 import * as format from './helpers/format';
 
 function App() {
   const [home, setHome] = useState(false)
   const [toggle, setToggle] = useState(true)
+  const [value, setValue] = useState(' ')
   const [name, setName] = useState('Hello, where are you ?')
   const [temp, setTemp] = useState(' ')
   const [desc, setDesc] = useState(' ')
@@ -14,20 +16,27 @@ function App() {
 
   function zipWeatherLookUp(event) {
     event.preventDefault();
-    fetch("https://api.openweathermap.org/data/2.5/weather?zip=85552,us&appid=3a5bf1eb2a22106bac2d6d95c02695fb", {
+    // https: //api.openweathermap.org/data/2.5/weather?zip=85552,us&appid=3a5bf1eb2a22106bac2d6d95c02695fb
+    let apiCore = 'https://api.openweathermap.org/data/2.5/weather?'
+    let apiCountry = 'us';
+    let inputVal = value.trim();
+    let apiZip = 'zip=' + inputVal + ',';
+    let apiKey = weatherKey;
+    let url = `${apiCore}${apiZip}${apiCountry}${apiKey}`;
+    
+    fetch(url, {
       "method": "GET"
     })
-      .then(response => response.json())
-      .then(data => {
-        let temps = format.formatToF(data)
-        console.dir(data)
-        setTemp(temps)
-        setName(data.name)
-        setDesc(data.weather[0].description)
-        setPerc(data.main.humidity)
-        clickToggle()
-        setHome(true)
-      })
+    .then(response => response.json())
+    .then(data => {
+      let temps = format.formatToF(data)
+      setTemp(temps)
+      setName(data.name)
+      setDesc(data.weather[0].description)
+      setPerc(data.main.humidity)
+      clickToggle()
+      setHome(true)
+    })
   }
 
   const clickToggle = () => {
@@ -37,7 +46,7 @@ function App() {
   return (
     <div className="app">
       <header className="app-header"> 
-        <h2 className="header-txt">My Weather</h2>
+        <h2 className="header-txt">Zip Weather</h2>
       </header>
       <div className="homeWrapper">
         <div className="location">
@@ -45,7 +54,7 @@ function App() {
             <form 
               onSubmit={zipWeatherLookUp}
               className="zipInputWrapper">
-              <input placeholder="Zip" className="zipInput"/>
+              <input placeholder="Zip" value={value} onChange={e => setValue(e.target.value)} className="zipInput"/>
               <button type="submit" className="submitBtn">Enter</button>
             </form>
           :
