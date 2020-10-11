@@ -17,13 +17,8 @@ function App() {
   function zipWeatherLookUp(event) {
     event.preventDefault();
     // https: //api.openweathermap.org/data/2.5/weather?zip=85552,us&appid=3a5bf1eb2a22106bac2d6d95c02695fb
-    let apiCore = 'https://api.openweathermap.org/data/2.5/weather?'
-    let apiCountry = 'us';
-    let inputVal = value.trim();
-    let apiZip = 'zip=' + inputVal + ',';
-    let apiKey = weatherKey;
-    let url = `${apiCore}${apiZip}${apiCountry}${apiKey}`;
-    
+    let url = formatUrl()
+
     fetch(url, {
       "method": "GET"
     })
@@ -37,6 +32,16 @@ function App() {
       clickToggle()
       setHome(true)
     })
+  }
+  
+  const formatUrl = () => {
+    let apiCore = 'https://api.openweathermap.org/data/2.5/weather?'
+    let apiCountry = 'us';
+    let inputVal = value.trim();
+    let apiZip = 'zip=' + inputVal + ',';
+    let apiKey = weatherKey;
+    let url = `${apiCore}${apiZip}${apiCountry}${apiKey}`;
+    return url
   }
 
   const clickToggle = () => {
