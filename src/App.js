@@ -16,7 +16,6 @@ function App() {
 
   function zipWeatherLookUp(event) {
     event.preventDefault();
-    // https: //api.openweathermap.org/data/2.5/weather?zip=85552,us&appid=3a5bf1eb2a22106bac2d6d95c02695fb
     let url = formatUrl()
 
     fetch(url, {
