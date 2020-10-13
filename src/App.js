@@ -5,7 +5,7 @@ import weatherKey from './api/key';
 // import * as apiData from './api/weatherApi';
 import * as format from './helpers/format';
 
-function App() {
+const App = () => {
   const [home, setHome] = useState(false)
   const [toggle, setToggle] = useState(true)
   const [value, setValue] = useState(' ')
@@ -14,23 +14,21 @@ function App() {
   const [desc, setDesc] = useState(' ')
   const [perc, setPerc] = useState(' ')
 
-  function zipWeatherLookUp(event) {
+  const zipWeatherLookUp = (event) => {
     event.preventDefault();
     let url = formatUrl()
 
-    fetch(url, {
-      "method": "GET"
-    })
-    .then(response => response.json())
-    .then(data => {
-      let temps = format.formatToF(data)
-      setTemp(temps)
-      setName(data.name)
-      setDesc(data.weather[0].description)
-      setPerc(data.main.humidity)
-      clickToggle()
-      setHome(true)
-    })
+    fetch(url, { "method": "GET" })
+      .then(response => response.json())
+      .then(data => {
+        let temps = format.formatToF(data)
+        setTemp(temps)
+        setName(data.name)
+        setDesc(data.weather[0].description)
+        setPerc(data.main.humidity)
+        clickToggle()
+        setHome(true)
+      })
   }
   
   const formatUrl = () => {
@@ -43,9 +41,7 @@ function App() {
     return url
   }
 
-  const clickToggle = () => {
-    setToggle(!toggle)
-  }
+  const clickToggle = () => { setToggle(!toggle) }
 
   return (
     <div className="app">
