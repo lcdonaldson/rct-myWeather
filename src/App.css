@@ -104,6 +104,7 @@ p {margin: 0;}
 }
 
 @media only screen and (min-width: 550px) {
+  .location>h3 {margin-top: 0.75rem;}
   .zipInput { min-width: 70vw; height: 2.7em;}
 }
 
