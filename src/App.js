@@ -2,7 +2,6 @@ import React, {useState, Image} from 'react';
 import './App.css';
 import MediaObject from './components/mediaObject';
 import weatherKey from './api/key';
-// import * as apiData from './api/weatherApi';
 import * as format from './helpers/format';
 
 const App = () => {
