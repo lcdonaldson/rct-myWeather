@@ -16,7 +16,6 @@ p {margin: 0;}
 .responsive {
   width: 100%;
   height: auto;
-  /* transform: rotate(180deg); */
 }
 .app-header {
   text-align: center;
@@ -99,7 +98,6 @@ p {margin: 0;}
 
 
 @media only screen and (min-width: 440px) {
-  /* .zipInput { min-width: 70vw; height: 2.7em;} */
   .submitBtn { font-size: 0.52em;}
 }
 
