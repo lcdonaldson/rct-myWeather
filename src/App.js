@@ -9,6 +9,7 @@ const App = () => {
   const [toggle, setToggle] = useState(true)
   const [value, setValue] = useState(' ')
   const [name, setName] = useState('Hello, where are you ?')
+  const [date] = useState(`${format.day}, ${format.month} ${format.date}`)
   const [temp, setTemp] = useState(' ')
   const [desc, setDesc] = useState(' ')
   const [perc, setPerc] = useState(' ')
@@ -20,6 +21,7 @@ const App = () => {
     fetch(url, { "method": "GET" })
       .then(response => response.json())
       .then(data => {
+        let date = `${format.day}, ${format.month} ${format.date}`;
         let temps = format.formatToF(data)
         setTemp(temps)
         setName(data.name)
@@ -68,7 +70,7 @@ const App = () => {
         { home ?
           <>
             <div className="today">
-              <h4 style={{margin: 0}}>Sun, Oct 04</h4>
+              <h4 className="date">{date}</h4>
               <div className="mediaObj-sm">
                 <img className="forcast-img" src={require('./assets/sunny.svg')} />
                 <h5 

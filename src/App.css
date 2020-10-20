@@ -61,6 +61,7 @@ p {margin: 0;}
   color: #fff;
   background-color: #54a1ffe8;
 }
+.date {margin: 0}
 .location>img { 
   align-self: flex-end; 
   margin-left: 1rem;
