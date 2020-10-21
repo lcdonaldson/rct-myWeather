@@ -12,7 +12,7 @@ const App = () => {
   const [date] = useState(`${format.day}, ${format.month} ${format.date}`)
   const [temp, setTemp] = useState(' ')
   const [desc, setDesc] = useState(' ')
-  const [perc, setPerc] = useState(' ')
+  const [prec, setPerc] = useState(' ')
 
   const zipWeatherLookUp = (event) => {
     event.preventDefault();
@@ -81,7 +81,7 @@ const App = () => {
                 {temp}
                 <span style={{ fontSize: 16 }}> F</span>
               </h1>
-              <h5 style={{ margin: 0, paddingLeft: 10}}>Percipitation: {perc}%</h5>
+              <h5 className="humidity">Precipitation: {prec} %</h5>
             </div>
             <MediaObject 
               img={require('./assets/sunny.svg')} 
@@ -89,7 +89,7 @@ const App = () => {
               month={format.month}
               date={format.date}
               desc={desc}
-              precipitation={perc}
+              precipitation={prec}
               temp={temp}
             />
           </>
