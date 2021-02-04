@@ -17,6 +17,9 @@ p {margin: 0;}
   width: 100%;
   height: auto;
 }
+
+// component styling
+
 .app-header {
   text-align: center;
   font-size: 20;
