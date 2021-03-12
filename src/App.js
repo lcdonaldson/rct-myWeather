@@ -21,7 +21,6 @@ const App = () => {
     fetch(url, { "method": "GET" })
       .then(response => response.json())
       .then(data => {
-        let date = `${format.day}, ${format.month} ${format.date}`;
         let temps = format.formatToF(data)
         setTemp(temps)
         setName(data.name)
