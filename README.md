@@ -1,4 +1,4 @@
-This project was a good way to challenge myself and show a basic react project with a few modern react core concepts:
+This project was a good way to challenge myself and show a basic react project with a few modern react core concepts.
 
 1. State management using mainly hooks.
 2. Splitting component logic.
